@@ -10,6 +10,7 @@ concurrency:
 jobs:
   haskell:
     strategy:
+      fail-fast: false
       matrix:
         ghc:
           - "9.12"

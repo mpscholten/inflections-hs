@@ -35,8 +35,12 @@ parameterize = parameterizeCustom defaultTransliterations
 
 -- | Transliterate 'Text' with a custom transliteration table.
 parameterizeCustom :: Transliterations -> Text -> Text
-parameterizeCustom m txt = (T.intercalate "-" . T.words) (T.unfoldr f ("", txt))
+parameterizeCustom m txt =
+    (T.intercalate "-" . T.words . T.map keepAllowed) (T.unfoldr f ("", txt))
   where
+    keepAllowed c
+      | (isAscii c && isAlphaNum c) || c == '_' = c
+      | otherwise = ' '
     f ("", t) = uncurry g <$> T.uncons t
     f (x:xs, t) = Just (x, (xs, t))
     g x xs
