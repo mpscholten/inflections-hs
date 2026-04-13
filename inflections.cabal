@@ -1,6 +1,6 @@
 cabal-version:       2.0
 name:                inflections
-version:             0.4.0.7
+version:             0.4.1.0
 synopsis:            Inflections library for Haskell
 description:
   Inflections provides methods for singularization, pluralization,
@@ -9,19 +9,28 @@ description:
 license:             MIT
 license-file:        LICENSE
 author:              Justin Leitgeb <justin@stackbuilders.com>
-homepage:            https://github.com/stackbuilders/inflections-hs
-bug-reports:         https://github.com/stackbuilders/inflections-hs/issues
-maintainer:          Justin Leitgeb <justin@stackbuilders.com>
+homepage:            https://github.com/mpscholten/inflections-hs
+bug-reports:         https://github.com/mpscholten/inflections-hs/issues
+maintainer:          Marc Scholten <marc@digitallyinduced.com>
 copyright:           2014–2016 Justin Leitgeb
 category:            Text
 build-type:          Simple
+tested-with:         GHC == 8.4.3
+                   , GHC == 8.10
+                   , GHC == 9.0
+                   , GHC == 9.2
+                   , GHC == 9.4
+                   , GHC == 9.6
+                   , GHC == 9.8
+                   , GHC == 9.10
+                   , GHC == 9.12
 extra-source-files:  CHANGELOG.md
                    , README.md
                    , bench/little_women.txt
 
 source-repository head
   type:            git
-  location:        https://github.com/stackbuilders/inflections-hs.git
+  location:        https://github.com/mpscholten/inflections-hs.git
 
 flag dev
   description:        Turn on development settings.
@@ -49,9 +58,9 @@ library
   else
     ghc-options:      -O2 -Wall
   build-depends:       base         >= 4.11   && < 5.0
-                     , exceptions   >= 0.6   && < 0.11
+                     , exceptions   >= 0.6   && < 0.12
                      , megaparsec   >= 7.0.1 && < 10.0
-                     , text         >= 0.2   && < 2.2
+                     , text         >= 1.2.3 && < 2.2
                      , unordered-containers >= 0.2.7 && < 0.3
   if !impl(ghc >= 7.10)
     build-depends:      void         == 0.7.*
@@ -70,7 +79,7 @@ test-suite test
                      , hspec        >= 2.0   && < 3.0
                      , hspec-megaparsec >= 2.0 && < 3.0
                      , megaparsec
-                     , text         >= 0.2   && < 2.2
+                     , text         >= 1.2.3 && < 2.2
   if !impl(ghc >= 7.10)
     build-depends:      void         == 0.7.*
 
@@ -102,7 +111,7 @@ benchmark bench-speed
                     , inflections
                     , text
                     , criterion    >= 1.1   && < 1.7
- default-language: Haskell2010
+  default-language: Haskell2010
 
 benchmark bench-memory
   main-is: Main.hs
@@ -112,4 +121,4 @@ benchmark bench-memory
                     , inflections
                     , text
                     , weigh        >= 0.0.3 && < 0.1.0
- default-language: Haskell2010
+  default-language: Haskell2010

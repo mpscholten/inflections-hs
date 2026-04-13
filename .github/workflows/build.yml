@@ -10,21 +10,28 @@ concurrency:
 jobs:
   haskell:
     strategy:
+      fail-fast: false
       matrix:
         ghc:
-          - "9.6.1"
+          - "9.12"
+          - "9.10"
+          - "9.8"
+          - "9.6"
+          - "9.4"
+          - "9.2"
+          - "9.0"
           - "8.10"
           - "8.4.3"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Haskell tooling
         uses: haskell-actions/setup@v2
         with:
           ghc-version: ${{ matrix.ghc }}
-          cabal-version: "3.6"
+          cabal-version: "3.14"
 
       - name: Configure project
         run: cabal configure --enable-tests
@@ -33,7 +40,7 @@ jobs:
         run: cabal freeze
 
       - name: Cache dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             ~/.cabal/package

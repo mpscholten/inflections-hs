@@ -1,3 +1,11 @@
+## Inflections 0.4.1.0
+* Fix `parameterize` emitting non-alphanumeric characters when the transliteration table maps an input to a string containing punctuation (e.g. `ŉ` previously produced `'n`; now produces `n`). The output is now filtered to `[a-z0-9_-]` as the docs imply. Note: this is an observable behavior change for affected inputs, hence the minor-version bump.
+* Bump bounds for `text` and `containers` to support GHC 9.10 and 9.12
+* Tighten lower bound on `text` to `>= 1.2.3` to reflect actual minimum
+* Widen upper bound on `exceptions` to `< 0.12`
+* Add `tested-with` covering GHC 8.4 through 9.12
+* CI now tests GHC 8.4 through 9.12
+
 ## Inflections 0.4.0.7
 * Bump bounds for `text` in order to support ghc-9.6.1
 
