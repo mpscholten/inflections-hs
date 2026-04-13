@@ -1,6 +1,6 @@
 cabal-version:       2.0
 name:                inflections
-version:             0.4.0.8
+version:             0.4.1.0
 synopsis:            Inflections library for Haskell
 description:
   Inflections provides methods for singularization, pluralization,
@@ -15,6 +15,15 @@ maintainer:          Marc Scholten <marc@digitallyinduced.com>
 copyright:           2014–2016 Justin Leitgeb
 category:            Text
 build-type:          Simple
+tested-with:         GHC == 8.4.3
+                   , GHC == 8.10
+                   , GHC == 9.0
+                   , GHC == 9.2
+                   , GHC == 9.4
+                   , GHC == 9.6
+                   , GHC == 9.8
+                   , GHC == 9.10
+                   , GHC == 9.12
 extra-source-files:  CHANGELOG.md
                    , README.md
                    , bench/little_women.txt
@@ -49,7 +58,7 @@ library
   else
     ghc-options:      -O2 -Wall
   build-depends:       base         >= 4.11   && < 5.0
-                     , exceptions   >= 0.6   && < 0.11
+                     , exceptions   >= 0.6   && < 0.12
                      , megaparsec   >= 7.0.1 && < 10.0
                      , text         >= 1.2.3 && < 2.2
                      , unordered-containers >= 0.2.7 && < 0.3
