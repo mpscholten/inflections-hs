@@ -1,3 +1,8 @@
+## Inflections 0.4.0.8
+* Bump bounds for `text` and `containers` to support GHC 9.10 and 9.12
+* Tighten lower bound on `text` to `>= 1.2.3` to reflect actual minimum
+* CI now tests GHC 8.4 through 9.12
+
 ## Inflections 0.4.0.7
 * Bump bounds for `text` in order to support ghc-9.6.1
 
