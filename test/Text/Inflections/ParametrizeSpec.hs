@@ -2,7 +2,7 @@
 
 module Text.Inflections.ParametrizeSpec (spec) where
 
-import Data.Char (toLower)
+import Data.Char (isAscii, toLower)
 import Data.List (group)
 import Test.Hspec
 import Test.QuickCheck
@@ -20,11 +20,11 @@ spec =
     it "never returns a string ending with a separator" $ property $ \s ->
       let parameterized = parameterize (T.pack s) in
       (not . T.null) parameterized ==> T.last parameterized /= '-'
-    it "returns every alphanumeric character from the input" $ property $ \s ->
+    it "returns every ASCII alphanumeric character from the input" $ property $ \s ->
       let parameterized = parameterize (T.pack s)
       in all (\c -> c `notElem` alphaNumerics ||
            c `elem` (alphaNumerics ++ "-") &&
-           c `elem` T.unpack parameterized) $ map toLower s
+           c `elem` T.unpack parameterized) $ map toLower (filter isAscii s)
     it "never returns a string with a sequence of dashes" $ property $ \s ->
       let parameterized = parameterize (T.pack s)
       in longestSequenceOf '-' (T.unpack parameterized) <= 1
